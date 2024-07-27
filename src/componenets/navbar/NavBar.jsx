@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 function NavBar({ setshowLogin, showLogin }) {
   const [menu, setMenu] = useState("home");
-  const { getTotalCartAmount, token, setCartItems, setToken } =
+  const { getTotalCartAmount, token, food_list, setCartItems, setToken } =
     useContext(storeContext);
   const navigate = useNavigate();
 
@@ -63,7 +63,9 @@ function NavBar({ setshowLogin, showLogin }) {
           </Link>
           {getTotalCartAmount() === 0 ? <></> : <div className="dot"></div>}
         </div>
-        {!token ? (
+        {food_list.length === 0 ? (
+          ""
+        ) : !token ? (
           <button onClick={() => setshowLogin(!showLogin)}>Sign in</button>
         ) : (
           <div className="nav-profile">
@@ -82,6 +84,7 @@ function NavBar({ setshowLogin, showLogin }) {
             </ul>
           </div>
         )}
+        {/* {} */}
       </div>
     </div>
   );
